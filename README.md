@@ -8,6 +8,8 @@
 
 While it is possible to use UIkit by its own when building Vue components, you may find yourself relying on too many dependencies and building a wrapper to fill the missing logic gap. Vuikit solves all that by providing native, unopinionated, components outputting UIkit layout.
 
+**Notice** that Vuikit 0.6.x is based on UIkit 2 while UIkit 3 based version is under development on Next branch.
+
 ## Supporting Vuikit
 
 Special thanks to the supporters who help pushing this project forward.
@@ -114,9 +116,10 @@ yarn run dev
 yarn run build
 ```
 
-## UIkit Themes
+## Styles
 
-You can use UIkit themes out of a box with few exceptions you should be aware of. For those a [custom theme](https://getuikit.com/docs/documentation_create-a-theme.html) is required adding the following workarounds.
+Vuikit provides its own [UIkit Theme](https://github.com/vuikit/vuikit-theme) which
+you can use out of a box, but usually you would want to [create](https://getuikit.com/docs/documentation_create-a-theme.html) your very own one. In such case be aware of the following necessary style workarounds.
 
 ### Modal
 
