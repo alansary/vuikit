@@ -9,7 +9,7 @@
       target: $target,
       position: $position,
       boundary: $boundary,
-      classPrefix: 'uk-drop'
+      clsPos: 'uk-drop'
     }"
   >
     <slot></slot>

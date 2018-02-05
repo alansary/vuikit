@@ -1,9 +1,9 @@
 import { css } from 'vuikit/src/util/style'
 import { warn } from 'vuikit/src/util/debug'
-import { addClass } from 'vuikit/src/util/class'
+import { toggleClass } from 'vuikit/src/util/class'
 import { on, off, offAll } from 'vuikit/src/util/dom/event'
 import { positionAt, flipPosition } from 'vuikit/src/util/position'
-import { get, debounce, isObject, isString, toInteger, isUndefined } from 'vuikit/src/util/lang'
+import { get, debounce, isObject, isUndefined, noop } from 'vuikit/src/util/lang'
 
 let uid = 'v-position'
 
@@ -29,7 +29,7 @@ export default {
 
 function position (ctx) {
   const { el, props, vnode } = ctx
-  const { target, position, offset, boundary, flip, classPrefix } = props
+  const { target, position, offset, boundary, flip, clsPos, beforePosition, afterPosition } = props
 
   if (!position.match(/^((top|bottom)-(left|center|right))|((left|right)-(top|center|bottom))$/)) {
     warn(`'${position}' is not a valid v-position position`, vnode)
@@ -42,8 +42,11 @@ function position (ctx) {
 
   let [dir, align] = position.split('-')
 
+  // execute callback
+  beforePosition(el)
+
   // remove any position class
-  const classesRx = new RegExp(`${classPrefix}-(top|bottom|left|right)(-[a-z]+)?`)
+  const classesRx = new RegExp(`${clsPos}-(top|bottom|left|right)(-[a-z]+)?`)
   el.className = el.className.replace(classesRx, '')
 
   // reset pos
@@ -82,9 +85,10 @@ function position (ctx) {
   setResizeEvent(ctx)
 
   // add position class
-  if (classPrefix) {
-    addClass(el, `${classPrefix}-${dir}-${align}`)
-  }
+  toggleClass(el, `${clsPos}-${dir}-${align}`, offset === false)
+
+  // execute callback
+  afterPosition(el)
 }
 
 /**
@@ -99,19 +103,18 @@ function getProps (ctx) {
     return false
   }
 
-  let target = value.target || null
-  const delay = get(value, 'delay', 0)
-  const flip = get(value, 'flip', true)
-  const classPrefix = get(value, 'classPrefix', 'v-position')
-  const boundary = value.boundary || window
-  const offset = toInteger(value.offset) || 0
-  const position = value.position || 'top-center'
-
-  if (isString(target)) {
-    target = vnode.context.$refs[target]
+  const props = {
+    target: get(value, 'target'),
+    position: get(value, 'position', 'top-center'),
+    boundary: get(value, 'boundary', window),
+    flip: get(value, 'flip', true),
+    offset: get(value, 'offset', false),
+    clsPos: get(value, 'clsPos'),
+    beforePosition: get(value, 'beforePosition', noop),
+    afterPosition: get(value, 'afterPosition', noop)
   }
 
-  return { target, delay, offset, flip, position, boundary, classPrefix }
+  return props
 }
 
 function setResizeEvent (ctx) {
