@@ -3,7 +3,7 @@ import { warn } from 'vuikit/src/util/debug'
 import { addClass } from 'vuikit/src/util/class'
 import { on, off, offAll } from 'vuikit/src/util/dom/event'
 import { positionAt, flipPosition } from 'vuikit/src/util/position'
-import { get, includes, debounce, isObject, isString, toInteger, isUndefined } from 'vuikit/src/util/lang'
+import { get, debounce, isObject, isString, toInteger, isUndefined } from 'vuikit/src/util/lang'
 
 let uid = 'v-position'
 
