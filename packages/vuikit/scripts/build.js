@@ -17,10 +17,6 @@ run(async () => {
 
   await task('Copy Files', () => Promise.all([
     copy('*.{md,json}', 'dist'),
-    copyRecursive('core', 'dist/core', [
-      '!**/__*__/*',
-      '!**/__*__'
-    ]),
     copyRecursive('src', 'dist/src', [
       '!**/__*__/*',
       '!**/__*__'
