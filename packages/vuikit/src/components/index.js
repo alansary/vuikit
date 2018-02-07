@@ -19,3 +19,7 @@ export * from './sticky'
 export * from './subnav'
 export * from './tab'
 export * from './table'
+
+// some components don't have a state
+// and we map the core instead
+export * from 'vuikit/src/core/grid'
