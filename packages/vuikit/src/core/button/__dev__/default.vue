@@ -4,7 +4,9 @@
     <vk-button>Default</vk-button>
     <vk-button active>Active</vk-button>
     <vk-button disabled>Disabled</vk-button>
-    <vk-button-link>Link</vk-button-link>
+
+    <h2>Button Link</h2>
+    <vk-button-link href="">Link</vk-button-link>
 
     <h3>Type</h3>
     <vk-button type="primary">Primary</vk-button>
