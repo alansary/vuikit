@@ -1,17 +1,11 @@
-import { isRtl } from 'vuikit/src/util/dom'
-import { merge, debounce } from 'vuikit/src/util/lang'
-import { on, off } from 'vuikit/src/util/dom/event'
-import { addClass, removeClass } from 'vuikit/src/util/class'
-
-let id = 1
+import { on } from 'vuikit/src/util/event'
+import { merge, noop } from 'vuikit/src/util/lang'
+import { toggleClass } from 'vuikit/src/util/class'
+import { isRtl, isVisible } from 'vuikit/src/util/dom'
 
 export default {
   bind (el, binding) {
-    el.vkmarginid = id++
-
-    on(window, 'resize', debounce(() => {
-      update(el, binding)
-    }, 10, true), `vk-margin-${el.vkmarginid}`)
+    el.vkMarginOff = on(window, 'resize', () => update(el, binding))
   },
   inserted (el, binding, vnode) {
     vnode.context.$nextTick(() => update(el, binding))
@@ -20,12 +14,13 @@ export default {
     update(el, binding)
   },
   unbind (el) {
-    off(window, 'resize', `vk-margin-${el.vkmarginid}`)
+    el.vkMarginOff()
   }
 }
 
 function update (el, binding) {
-  const options = merge({
+  const opts = merge({
+    onUpdate: noop,
     margin: 'uk-margin-small-top',
     firstColumn: 'uk-first-column'
   }, (binding.value || {}))
@@ -36,17 +31,16 @@ function update (el, binding) {
     return
   }
 
-  const { rows } = getRows(items)
+  const data = getRows(items)
 
-  rows.forEach((row, i) =>
+  data.rows.forEach((row, i) =>
     row.forEach((el, j) => {
-      removeClass(el, options.margin)
-      removeClass(el, options.firstColumn)
-
-      ;(i !== 0) && addClass(el, options.margin)
-      ;(j === 0) && addClass(el, options.firstColumn)
+      toggleClass(el, opts.margin, i !== 0)
+      toggleClass(el, opts.firstColumn, j === 0)
     })
   )
+
+  opts.onUpdate(el, data)
 }
 
 function getRows (items) {
@@ -100,8 +94,4 @@ function getRows (items) {
   data.rows = rows
 
   return data
-}
-
-function isVisible (el) {
-  return el.offsetHeight
 }
