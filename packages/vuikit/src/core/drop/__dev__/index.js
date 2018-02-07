@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Dropdown', module)
+storiesOf('Core/Drop', module)
   .add('Default', () => require('./default.vue').default)
+  .add('Positions', () => require('./positions.vue').default)
