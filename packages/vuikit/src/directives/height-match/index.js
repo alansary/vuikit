@@ -1,18 +1,13 @@
+import { $$ } from 'vuikit/src/util/core'
+import { on } from 'vuikit/src/util/event'
 import { css } from 'vuikit/src/util/style'
 import { attr } from 'vuikit/src/util/attr'
-import { isRtl } from 'vuikit/src/util/env'
-import { on, off } from 'vuikit/src/util/dom/event'
-import { isUndefined, merge, debounce, toArray } from 'vuikit/src/util/lang'
-
-let id = 1
+import { isVisible } from 'vuikit/src/util/filter'
+import { isUndefined, merge } from 'vuikit/src/util/lang'
 
 export default {
   bind (el, binding) {
-    el.vkheightmatchid = id++
-
-    on(window, 'resize', debounce(() => {
-      update(el, binding)
-    }, 10, true), `vk-height-match-${el.vkheightmatchid}`)
+    el.vkHeightMatchOff = on(window, 'resize', () => update(el, binding))
   },
   inserted (el, binding, vnode) {
     vnode.context.$nextTick(() => update(el, binding))
@@ -21,31 +16,27 @@ export default {
     update(el, binding)
   },
   unbind (el) {
-    off(window, 'resize', `vk-height-match-${el.vkheightmatchid}`)
+    el.vkHeightMatchOff()
   }
 }
 
 function update (el, binding) {
-  const options = merge({
-    target: ':scope > *',
+  const opts = merge({
+    target: '> *',
     row: true
   }, (binding.value || {}))
 
-  let elements = el.querySelectorAll(options.target)
+  let elements = $$(opts.target, el)
 
-  // convert node list to pure array
-  elements = [].slice.call(elements)
-
-  // reset
-  applyHeight(elements, '')
+  css(elements, 'minHeight', '')
 
   // get rows that should be adjusted
-  const rows = getRows(elements, options.row)
+  const rows = getRows(elements, opts.row)
 
   // apply height
   rows.forEach(els => {
     const { height, elements } = match(els)
-    applyHeight(elements, `${height}px`)
+    css(elements, 'minHeight', height)
   })
 }
 
@@ -54,49 +45,21 @@ function getRows (elements, row) {
     return [ elements ]
   }
 
-  const rows = [[]]
+  let lastOffset = false
 
-  for (var i = 0; i < elements.length; i++) {
-    const el = elements[i]
-    const dim = el.getBoundingClientRect()
+  return elements.reduce((rows, el) => {
 
-    if (!dim.height) {
-      continue
+    if (lastOffset !== el.offsetTop) {
+      rows.push([el])
+    } else {
+      rows[rows.length - 1].push(el)
     }
 
-    for (var j = rows.length - 1; j >= 0; j--) {
-      const row = rows[j]
+    lastOffset = el.offsetTop
 
-      if (!row[0]) {
-        row.push(el)
-        break
-      }
+    return rows
 
-      var leftDim = row[0].getBoundingClientRect()
-
-      if (dim.top >= Math.floor(leftDim.bottom)) {
-        rows.push([el])
-        break
-      }
-
-      if (Math.floor(dim.bottom) > leftDim.top) {
-        if (dim.left < leftDim.left && !isRtl) {
-          row.unshift(el)
-          break
-        }
-
-        row.push(el)
-        break
-      }
-
-      if (j === 0) {
-        rows.unshift([el])
-        break
-      }
-    }
-  }
-
-  return rows
+  }, [])
 }
 
 function match (elements) {
@@ -132,12 +95,4 @@ function match (elements) {
   elements = elements.filter((el, i) => heights[i] < max)
 
   return { height: max, elements }
-}
-
-function isVisible (el) {
-  return el.offsetHeight
-}
-
-function applyHeight (elements, height) {
-  toArray(elements).forEach(el => css(el, 'minHeight', height))
 }
