@@ -1,6 +1,5 @@
 export * from './breadcrumb'
 export * from './button'
-export * from './card'
 // export * from './datepicker'
 export * from './drop'
 export * from './dropdown'
@@ -23,3 +22,4 @@ export * from './table'
 // some components don't have a state
 // and we map the core instead
 export * from 'vuikit/src/core/grid'
+export * from 'vuikit/src/core/card'

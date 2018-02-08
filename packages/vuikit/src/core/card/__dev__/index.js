@@ -1,5 +1,5 @@
 import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Card', module)
-  .add('Default', () => Default)
+storiesOf('Core', module)
+  .add('Card', () => Default)
