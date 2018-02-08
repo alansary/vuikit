@@ -1,44 +1,41 @@
 <template>
   <div class="uk-padding">
 
-    <subnav v-model="active">
-      <subnav-item title="Item" name="first" />
-      <subnav-item title="Item" name="second" />
-      <subnav-item title="Item" name="third" />
-      <subnav-item title="Disabled" name="fourth" disabled />
-    </subnav>
+    <vk-subnav v-model="active">
+      <vk-subnav-item title="Item" name="first" />
+      <vk-subnav-item title="Item" name="second" />
+      <vk-subnav-item title="Item" name="third" />
+      <vk-subnav-item title="Disabled" name="fourth" disabled />
+    </vk-subnav>
 
     Active: {{ active }}
 
     <hr />
 
     <p>Using index if name omited</p>
-    <subnav v-model="active">
-      <subnav-item title="Item" />
-      <subnav-item title="Item" />
-      <subnav-item title="Item" />
-      <subnav-item title="Disabled" disabled />
-    </subnav>
+    <vk-subnav v-model="active">
+      <vk-subnav-item title="Item" />
+      <vk-subnav-item title="Item" />
+      <vk-subnav-item title="Item" />
+      <vk-subnav-item title="Disabled" disabled />
+    </vk-subnav>
 
     <hr />
 
     Modifiers supported
 
-    <subnav pilled v-model="active">
-      <subnav-item title="Active" active />
-      <subnav-item title="Item" />
-      <subnav-item title="Item" />
-      <subnav-item title="Disabled" disabled />
-    </subnav>
+    <vk-subnav pilled v-model="active">
+      <vk-subnav-item title="Active" active />
+      <vk-subnav-item title="Item" />
+      <vk-subnav-item title="Item" />
+      <vk-subnav-item title="Disabled" disabled />
+    </vk-subnav>
 
   </div>
 </template>
 
 <script>
-import * as components from '../'
-
 export default {
-  components,
   data: () => ({
     active: 'first'
   })

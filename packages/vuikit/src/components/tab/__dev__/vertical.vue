@@ -37,14 +37,3 @@
 
   </div>
 </template>
-
-<script>
-import { TabVertical as VkTabVertical, TabItem as VkTabItem } from '../'
-
-export default {
-  components: {
-    VkTabItem,
-    VkTabVertical
-  }
-}
-</script>

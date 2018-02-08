@@ -65,13 +65,7 @@
 </template>
 
 <script>
-import { Tab as VkTab, TabItem as VkTabItem } from '../'
-
 export default {
-  components: {
-    VkTab,
-    VkTabItem
-  },
   data: () => ({
     activeTab: ''
   })

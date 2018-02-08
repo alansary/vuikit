@@ -1,10 +1,11 @@
-import UiSubnav from './ui/subnav'
+import { get } from 'vuikit/src/util/lang'
 import { warn } from 'vuikit/src/util/debug'
+import { Subnav } from 'vuikit/src/core/subnav'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 
 export default {
   functional: true,
-  props: UiSubnav.props,
+  props: Subnav.props,
   render (h, { data, props, children, listeners, parent }) {
     const items = children.filter(n => n.tag)
 
@@ -16,7 +17,7 @@ export default {
     const selectedItem = data.model.value
 
     items.forEach((item, index) => {
-      const name = item.data.props.name || index
+      const name = get(item, 'data.props.name', index)
       const isActive = selectedItem === name
 
       if (isActive) {
@@ -29,6 +30,6 @@ export default {
       }
     })
 
-    return h(UiSubnav, mergeData(data, { props }), children)
+    return h(Subnav, mergeData(data, { props }), children)
   }
 }

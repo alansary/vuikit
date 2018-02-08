@@ -2,18 +2,18 @@
   <div :class="{
     'uk-flex uk-flex-column-reverse': bottom
   }">
-    <ui-tab
+    <tab
       :bottom="bottom"
       :alignment="alignment"
     >
-      <ui-tab-item v-for="(tab, index) in tabs"
+      <tab-item v-for="(tab, index) in tabs"
         :active="tab.id === state.activeTab"
         :key="`${tab.id}_${index}`"
         :label="tab.label"
         :disabled="tab.disabled"
         @click.prevent="!tab.disabled && triggerTab(tab.id)"
-      ></ui-tab-item>
-    </ui-tab>
+      ></tab-item>
+    </tab>
     <div :class="{ 'uk-margin': bottom }">
       <transition :name="transition" mode="out-in">
         <keep-alive>
@@ -26,16 +26,17 @@
 
 <script>
 import core from './core'
-import UiTab from './ui/tab'
-import UiTabItem from './ui/tab-item'
+import Tab from 'vuikit/src/core/tab/tab'
+import TabItem from 'vuikit/src/core/tab/tab-item'
+import { assign } from 'vuikit/src/util/lang'
 
 export default {
   name: 'Tab',
   extends: core,
   components: {
-    UiTab,
-    UiTabItem
+    Tab,
+    TabItem
   },
-  props: UiTab.props
+  props: assign({}, Tab.props)
 }
 </script>
