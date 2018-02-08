@@ -2,10 +2,10 @@
   <div class="uk-padding">
 
     <vk-breadcrumb>
-      <vk-breadcrumb-item title="Item" />
-      <vk-breadcrumb-item title="Item" />
-      <vk-breadcrumb-item title="Disabled" disabled />
-      <vk-breadcrumb-item title="Active" active />
+      <vk-breadcrumb-item href="#">Item</vk-breadcrumb-item>
+      <vk-breadcrumb-item href="#">Item</vk-breadcrumb-item>
+      <vk-breadcrumb-item disabled>Disabled</vk-breadcrumb-item>
+      <vk-breadcrumb-item href="#">Active</vk-breadcrumb-item>
     </vk-breadcrumb>
 
   </div>

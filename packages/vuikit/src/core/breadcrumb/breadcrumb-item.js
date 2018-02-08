@@ -1,31 +1,28 @@
 import mergeData from 'vuikit/src/util/vue-data-merge'
+import { isUndefined } from 'vuikit/src/util/lang'
 
 export default {
   functional: true,
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-    active: {
-      type: Boolean,
-      default: false
+    href: {
+      type: String
     },
     disabled: {
       type: Boolean,
       default: false
     }
   },
-  render: (h, { props, data }) => {
-    const { title, active, disabled } = props
+  render: (h, { props, data, children }) => {
+    const { href, disabled } = props
 
     return h('li', mergeData(data, {
       class: {
-        'uk-active': active,
         'uk-disabled': disabled
       }
     }), [
-      h(disabled || active ? 'span' : 'a', title)
+      (isUndefined(href) || disabled)
+        ? h('span', children)
+        : h('a', { attrs: { href } }, children)
     ])
   }
 }
