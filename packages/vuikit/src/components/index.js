@@ -23,3 +23,4 @@ export * from './table'
 // and we map the core instead
 export * from 'vuikit/src/core/grid'
 export * from 'vuikit/src/core/card'
+export * from 'vuikit/src/core/label'
