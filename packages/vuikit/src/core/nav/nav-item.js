@@ -1,4 +1,3 @@
-import VkIcon from '../icon/icon'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 
 export default {
@@ -8,28 +7,31 @@ export default {
       type: Boolean,
       default: false
     },
-    label: {
-      type: String,
-      required: true
-    },
     icon: {
       type: String
+    },
+    href: {
+      type: String
+    },
+    title: {
+      type: String,
+      required: true
     }
   },
-  render (h, { props, data }) {
-    const { active, label, icon } = props
+  render (h, { props, data, children, slots }) {
+    const { active, icon, title, href } = props
 
-    return h('li', mergeData(data, { class: { 'uk-active': active } }), [
-
-      h('a', [
-        icon && h(VkIcon, {
-          class: 'uk-margin-small-right',
-          props: { icon }
-        }),
-        label
+    return h('li', mergeData(data, {
+      class: { 'uk-active': active }
+    }), [
+      h('a', {
+        attrs: { href }
+      }, [
+        icon && h('span', {
+          class: ['uk-icon uk-margin-small-right']
+        }, [ h(`icon-${props.icon}`) ]),
+        title
       ])
-
     ])
-
   }
 }

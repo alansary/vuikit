@@ -7,19 +7,19 @@ export default {
       type: Boolean,
       default: false
     },
-    primary: {
-      type: Boolean,
-      default: false
+    type: {
+      type: [Boolean, String],
+      default: 'default',
+      validator: val => !val || val.match(/^(default|primary)$/)
     }
   },
   render (h, { props, data, children }) {
-    const { center, primary } = props
+    const { center, type } = props
 
     return h('ul', mergeData(data, {
       class: ['uk-nav', {
         'uk-nav-center': center,
-        'uk-nav-default': !primary,
-        'uk-nav-primary': primary
+        [`uk-nav-${type}`]: type
       }]
     }), children)
 
