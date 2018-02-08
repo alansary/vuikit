@@ -25,7 +25,7 @@
     "*.js"
   ],
   "scripts": {
-    "dev": "start-storybook -p 6006",
+    "dev": "start-storybook -s ./.storybook/static -p 6006",
     "build": "node -r @std/esm scripts/build.js"
   },
   "devDependencies": {
