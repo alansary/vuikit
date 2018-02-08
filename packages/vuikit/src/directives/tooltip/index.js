@@ -1,9 +1,9 @@
 import { css } from 'vuikit/src/util/style'
 import { warn } from 'vuikit/src/util/debug'
-import { Animation } from 'vuikit/src/util/dom'
 import { on, off } from 'vuikit/src/util/dom/event'
+import { Animation } from 'vuikit/src/util/animation'
 import { addClass, removeClass } from 'vuikit/src/util/class'
-import { positionAt, flipPosition } from 'vuikit/src/util/position'
+import { positionAt, flipPosition } from 'vuikit/src/util/dimensions'
 import { get, isEmpty, includes, isObject, toInteger } from 'vuikit/src/util/lang'
 
 let delayedShow

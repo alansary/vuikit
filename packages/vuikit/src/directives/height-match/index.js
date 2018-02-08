@@ -1,6 +1,6 @@
 import { css } from 'vuikit/src/util/style'
 import { attr } from 'vuikit/src/util/attr'
-import { isRtl } from 'vuikit/src/util/dom'
+import { isRtl } from 'vuikit/src/util/env'
 import { on, off } from 'vuikit/src/util/dom/event'
 import { isUndefined, merge, debounce, toArray } from 'vuikit/src/util/lang'
 
@@ -80,7 +80,7 @@ function getRows (elements, row) {
       }
 
       if (Math.floor(dim.bottom) > leftDim.top) {
-        if (dim.left < leftDim.left && !isRtl()) {
+        if (dim.left < leftDim.left && !isRtl) {
           row.unshift(el)
           break
         }

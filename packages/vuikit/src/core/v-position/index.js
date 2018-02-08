@@ -2,7 +2,7 @@ import { css } from 'vuikit/src/util/style'
 import { warn } from 'vuikit/src/util/debug'
 import { toggleClass } from 'vuikit/src/util/class'
 import { on, off, offAll } from 'vuikit/src/util/dom/event'
-import { positionAt, flipPosition } from 'vuikit/src/util/position'
+import { positionAt, flipPosition } from 'vuikit/src/util/dimensions'
 import { get, debounce, isObject, isUndefined, noop } from 'vuikit/src/util/lang'
 
 let uid = 'v-position'

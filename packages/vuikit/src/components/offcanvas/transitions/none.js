@@ -1,5 +1,5 @@
 import { css } from 'vuikit/src/util/style'
-import { width } from 'vuikit/src/util/position'
+import { width } from 'vuikit/src/util/dimensions'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 import { addClass, removeClass } from 'vuikit/src/util/class'
 

@@ -1,5 +1,5 @@
 import { isString } from 'vuikit/src/util/lang'
-import { Animation } from 'vuikit/src/util/dom'
+import { Animation } from 'vuikit/src/util/animation'
 
 export default {
   functional: true,

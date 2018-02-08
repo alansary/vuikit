@@ -1,7 +1,8 @@
 import { on } from 'vuikit/src/util/event'
+import { isRtl } from 'vuikit/src/util/env'
+import { isVisible } from 'vuikit/src/util/filter'
 import { merge, noop } from 'vuikit/src/util/lang'
 import { toggleClass } from 'vuikit/src/util/class'
-import { isRtl, isVisible } from 'vuikit/src/util/dom'
 
 export default {
   bind (el, binding) {
@@ -75,7 +76,7 @@ function getRows (items) {
       if (Math.floor(dim.bottom) > leftDim.top) {
         data.stacks = false
 
-        if (dim.left < leftDim.left && !isRtl()) {
+        if (dim.left < leftDim.left && !isRtl) {
           row.unshift(el)
           break
         }

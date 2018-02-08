@@ -64,7 +64,7 @@
 <script>
 import { css } from 'vuikit/src/util/style'
 import { on } from 'vuikit/src/util/dom/event'
-import { height } from 'vuikit/src/util/position'
+import { height } from 'vuikit/src/util/dimensions'
 import { includes, debounce } from 'vuikit/src/util/lang'
 
 import core from './core'

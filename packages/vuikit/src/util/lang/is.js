@@ -50,6 +50,18 @@ export function isWindow (obj) {
   return isObject(obj) && obj === obj.window
 }
 
+export function isJQuery (obj) {
+  return isObject(obj) && !!obj.jquery
+}
+
+export function isNode (element) {
+  return element instanceof Node || (isObject(element) && element.nodeType === 1)
+}
+
+export function isNodeCollection (element) {
+  return element instanceof NodeList || element instanceof HTMLCollection
+}
+
 export function isEmpty (val) {
   if (isObject(val)) {
     return Object.keys(val).length === 0

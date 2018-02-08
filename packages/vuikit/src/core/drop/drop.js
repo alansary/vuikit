@@ -1,9 +1,9 @@
 import VkTransition from 'vuikit/src/core/transition'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 import { css } from 'vuikit/src/util/style'
-import { isRtl } from 'vuikit/src/util/dom'
+import { isRtl } from 'vuikit/src/util/env'
 import { assign } from 'vuikit/src/util/lang'
-import { offset } from 'vuikit/src/util/position'
+import { offset } from 'vuikit/src/util/dimensions'
 import { addClass, removeClass } from 'vuikit/src/util/class'
 
 export default {
@@ -29,7 +29,7 @@ export default {
     },
     position: {
       type: String,
-      default: `bottom-${isRtl() ? 'right' : 'left'}`,
+      default: `bottom-${isRtl ? 'right' : 'left'}`,
       validator: pos =>
         pos.match(/(top|bottom)-(left|right|center|justify)/) ||
         pos.match(/(left|right)-(top|bottom|center|justify)/)

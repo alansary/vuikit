@@ -1,6 +1,6 @@
 import { css } from 'vuikit/src/util/style'
 import { on, offAll } from 'vuikit/src/util/dom/event'
-import { width, height } from 'vuikit/src/util/position'
+import { width, height } from 'vuikit/src/util/dimensions'
 import { addClass, removeClass } from 'vuikit/src/util/class'
 
 const win = window
