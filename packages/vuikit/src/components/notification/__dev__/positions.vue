@@ -85,14 +85,7 @@
 </template>
 
 <script>
-import { Button as VkButton } from '../../button'
-import { Notification as VkNotification } from '../'
-
 export default {
-  components: {
-    VkButton,
-    VkNotification
-  },
   data: () => ({
     top: {
       left: [],

@@ -2,4 +2,4 @@ import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
 storiesOf('Core', module)
-  .add('transition', () => Default)
+  .add('Transition', () => Default)

@@ -53,14 +53,7 @@
 </template>
 
 <script>
-import { Modal as VkModal } from '../'
-import { Button as VkButton } from '../../button'
-
 export default {
-  components: {
-    VkModal,
-    VkButton
-  },
   data: () => ({
     show: {
       appear: true,

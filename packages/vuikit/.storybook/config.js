@@ -1,10 +1,15 @@
 import Vue from 'vue'
-import Components from './components'
+import Vuikit from 'vuikit/src/vuikit.esm'
 import { configure } from '@storybook/vue'
+import { each } from 'vuikit/src/util/lang'
 
 import 'vuikit/src/theme/index.less'
 
-Vue.use(Components)
+// register Story components
+Vue.component('StoryPositions', require('./components/story-positions').default)
+
+// register Vuikit
+Vue.use(Vuikit)
 
 // automatically import all stories.js file in __dev__ folders
 const core = require.context('../src/core', true, /__dev__\/index.js$/)

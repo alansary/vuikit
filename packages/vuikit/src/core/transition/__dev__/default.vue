@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import VkTransition from '../index'
+import { Transition } from '../'
 
 export default {
   components: {
-    VkTransition
+    VkTransition: Transition
   },
   data: () => ({
     show: true

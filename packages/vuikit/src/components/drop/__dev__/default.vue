@@ -73,22 +73,14 @@
 </template>
 
 <script>
-import { Drop as VkDrop } from '../'
-import { Button as VkButton, Card as VkCard } from '../..'
-
-const LoremIpsum = {
-  functional: true,
-  render (h) {
-    return h('p', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.')
-  }
-}
-
 export default {
   components: {
-    VkCard,
-    VkDrop,
-    VkButton,
-    LoremIpsum
+    LoremIpsum: {
+      functional: true,
+      render (h) {
+        return h('p', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.')
+      }
+    }
   }
 }
 </script>

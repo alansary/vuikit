@@ -1,4 +1,4 @@
-import VkTransition from 'vuikit/src/core/transition'
+import { Transition } from 'vuikit/src/core/transition'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 import { css } from 'vuikit/src/util/style'
 import { isRtl } from 'vuikit/src/util/env'
@@ -105,7 +105,7 @@ export default {
       ]
     }), children)
 
-    return h(VkTransition, {
+    return h(Transition, {
       props: {
         name: [props.animation],
         duration: props.duration

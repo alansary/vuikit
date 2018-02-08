@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { Button as VkButton } from '../../../components/button'
+import { Button } from 'vuikit/src/components'
 import VkTooltip from '../'
 
 const PosButton = {
@@ -59,7 +59,7 @@ const PosButton = {
     let label = this.position.split('-')
     label = `${label[0][0]}${label[1][0]}`
 
-    return h(VkButton, {
+    return h(Button, {
       props: {
         size: 'small'
       },

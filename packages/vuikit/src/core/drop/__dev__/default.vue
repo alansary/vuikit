@@ -17,8 +17,6 @@
 <script>
 import { Drop } from '../'
 import VkPosition from 'vuikit/src/core/v-position'
-import VkTransition from 'vuikit/src/core/transition'
-import { Button as VkButton } from 'vuikit/src/components'
 
 const UiCard = {
   functional: true,
@@ -34,9 +32,7 @@ const UiCard = {
 export default {
   components: {
     Drop,
-    UiCard,
-    VkButton,
-    VkTransition
+    UiCard
   },
   directives: {
     VkPosition

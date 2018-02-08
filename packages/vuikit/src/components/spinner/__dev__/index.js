@@ -1,5 +1,5 @@
 import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Spinner', module)
-  .add('Default', () => Default)
+storiesOf('Components', module)
+  .add('Spinner', () => Default)

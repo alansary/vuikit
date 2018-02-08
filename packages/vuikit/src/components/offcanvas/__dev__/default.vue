@@ -52,20 +52,7 @@
 </template>
 
 <script>
-import { Button as VkButton } from '../..'
-import {
-  Offcanvas as VkOffcanvas,
-  OffcanvasClose as VkOffcanvasClose,
-  OffcanvasContent as VkOffcanvasContent
-} from '../'
-
 export default {
-  components: {
-    VkButton,
-    VkOffcanvas,
-    VkOffcanvasClose,
-    VkOffcanvasContent
-  },
   data: () => ({
     show: false,
     flip: false,

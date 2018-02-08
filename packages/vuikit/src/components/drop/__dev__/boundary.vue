@@ -113,8 +113,6 @@
 </template>
 
 <script>
-import { Drop as VkDrop } from '../'
-import { Button as VkButton, Card as VkCard } from '../..'
 
 const LoremIpsum = {
   functional: true,
@@ -125,9 +123,6 @@ const LoremIpsum = {
 
 export default {
   components: {
-    VkCard,
-    VkDrop,
-    VkButton,
     LoremIpsum
   }
 }

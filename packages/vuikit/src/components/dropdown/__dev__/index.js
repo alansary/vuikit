@@ -1,4 +1,4 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Dropdown', module)
-  .add('Default', () => require('./default.vue').default)
+storiesOf('Components', module)
+  .add('Dropdown', () => require('./default.vue').default)

@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Core/Drop', module)
-  .add('Default', () => require('./default.vue').default)
-  .add('Positions', () => require('./positions.vue').default)
+storiesOf('Core', module)
+  .add('Drop', () => require('./default.vue').default)
+  .add('Drop Positions', () => require('./positions.vue').default)

@@ -21,14 +21,3 @@
     <vk-button size="small">Small</vk-button>
   </div>
 </template>
-
-<script>
-import { Button, ButtonLink } from '../'
-
-export default {
-  components: {
-    VkButton: Button,
-    VkButtonLink: ButtonLink
-  }
-}
-</script>

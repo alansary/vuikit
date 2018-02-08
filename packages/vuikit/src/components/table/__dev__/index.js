@@ -1,8 +1,8 @@
 import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Table', module)
-  .add('Default', () => Default)
-  .add('Select', () => require('./select.vue').default)
-  .add('Sort', () => require('./sort.vue').default)
-  .add('Tree', () => require('./tree.vue').default)
+storiesOf('Components', module)
+  .add('Table', () => Default)
+  .add('Table Select', () => require('./select.vue').default)
+  .add('Table Sort', () => require('./sort.vue').default)
+  .add('Table Tree', () => require('./tree.vue').default)

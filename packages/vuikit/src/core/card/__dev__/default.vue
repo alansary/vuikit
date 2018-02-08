@@ -157,15 +157,9 @@
 </template>
 
 <script>
-import { Grid, Card, CardTitle } from 'vuikit/src/components'
 import { Margin as VkMargin } from 'vuikit/src/directives'
 
 export default {
-  components: {
-    VkGrid: Grid,
-    VkCard: Card,
-    VkCardTitle: CardTitle
-  },
   directives: {
     VkMargin
   }

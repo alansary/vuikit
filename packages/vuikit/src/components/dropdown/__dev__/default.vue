@@ -23,16 +23,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { Button as VkButton } from '../..'
-import { DropdownNav as VkDropdownNav, Dropdown as VkDropdown } from '../'
-
-export default {
-  components: {
-    VkButton,
-    VkDropdown,
-    VkDropdownNav
-  }
-}
-</script>

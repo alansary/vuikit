@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Drop', module)
-  .add('Default', () => require('./default.vue').default)
-  .add('Boundary', () => require('./boundary.vue').default)
+storiesOf('Components', module)
+  .add('Drop', () => require('./default.vue').default)
+  .add('Drop With Boundaries', () => require('./boundary.vue').default)

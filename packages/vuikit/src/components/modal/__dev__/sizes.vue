@@ -53,15 +53,7 @@
 </template>
 
 <script>
-import { Modal as VkModal, ModalFull as VkModalFull } from '../'
-import { Button as VkButton } from '../../button'
-
 export default {
-  components: {
-    VkModal,
-    VkModalFull,
-    VkButton
-  },
   data: () => ({
     show: {
       container: false,
