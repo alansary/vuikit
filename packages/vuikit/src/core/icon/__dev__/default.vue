@@ -1,43 +1,44 @@
 <template>
   <div class="uk-padding">
 
-    <h2>Default</h2>
-    <vk-icon name="check" />
+    <vk-grid class="uk-child-width-1-4@m">
+      <div>
+        <h3>Default</h3>
+        <vk-icon name="home" />
+      </div>
 
-    <h2>Link</h2>
-    <vk-icon-link name="check" />
+      <div>
+        <h3>Link</h3>
+        <vk-icon-link name="home" />
+      </div>
 
-    <h2>Link Reset</h2>
-    <vk-icon-link name="check" reset />
+      <div>
+        <h3>Link Reset</h3>
+        <vk-icon-link name="home" reset />
+      </div>
 
-    <h2>Button</h2>
-    <vk-icon-button name="check" />
+      <div>
+        <h3>Button</h3>
+        <vk-icon-button name="home" />
+      </div>
+    </vk-grid>
 
-    <h2>Custom Icon</h2>
-    <vk-icon>
-      <icon-check></icon-check>
-    </vk-icon>
+    <vk-grid class="uk-child-width-1-4@m">
+      <div>
+        <h3>Ratio</h3>
+        <vk-icon name="home" ratio="2" />
+      </div>
 
-    <h2>Icon Options</h2>
+      <div>
+        <h3>Width/Height</h3>
+        <vk-icon name="home" width="16" height="16" />
+      </div>
 
-    <h3>Ratio</h3>
-    <vk-icon name="check" ratio="2" />
-
-    <h3>Width/Height</h3>
-    <vk-icon name="check" width="16" height="16" />
-
-    <h3>ViewBox</h3>
-    <vk-icon name="check" viewBox="6 6 16 16" />
+      <div>
+        <h3>ViewBox</h3>
+        <vk-icon name="home" viewBox="6 6 16 16" />
+      </div>
+    </vk-grid>
 
   </div>
 </template>
-
-<script>
-import IconCheck from './icon-check'
-
-export default {
-  components: {
-    IconCheck
-  }
-}
-</script>

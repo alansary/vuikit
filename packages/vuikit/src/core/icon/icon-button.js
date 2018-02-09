@@ -7,9 +7,7 @@ export default {
   render: (h, { data, props, children }) =>
 
     h('a', mergeData(data, { class: 'uk-icon uk-icon-button' }), [
-      props.name
-        ? h(`icon-${props.name}`, { props })
-        : children
+      h(`icon-${props.name}`, { props })
     ])
 
 }

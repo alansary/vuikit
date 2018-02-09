@@ -15,9 +15,7 @@ export default {
   render: (h, { data, props, children }) =>
 
     h('span', mergeData(data, { class: ['uk-icon'] }), [
-      props.name
-        ? h(`icon-${props.name}`, { props })
-        : children
+      h(`icon-${props.name}`, { props })
     ])
 
 }
