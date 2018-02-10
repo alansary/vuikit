@@ -1,9 +1,10 @@
 import VkIcon from './icon'
+import { assign } from 'vuikit/src/util/lang'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 
 export default {
   functional: true,
-  props: mergeData(VkIcon.props, {
+  props: assign({}, VkIcon.props, {
     reset: {
       type: Boolean,
       default: false
@@ -16,7 +17,7 @@ export default {
         'uk-icon-link': props.reset
       }]
     }), [
-      h(`icon-${props.name}`, { props })
+      h(`icon-${props.icon}`, { props })
     ])
 
 }

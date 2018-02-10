@@ -3,9 +3,9 @@ import mergeData from 'vuikit/src/util/vue-data-merge'
 export default {
   functional: true,
   props: {
-    name: {
+    icon: {
       type: String,
-      default: ''
+      required: true
     },
     viewBox: String,
     ratio: [String, Number],
@@ -14,8 +14,8 @@ export default {
   },
   render: (h, { data, props, children }) =>
 
-    h('span', mergeData(data, { class: ['uk-icon'] }), [
-      h(`icon-${props.name}`, { props })
+    h('span', mergeData(data, { class: 'uk-icon' }), [
+      h(`icon-${props.icon}`, { props })
     ])
 
 }
