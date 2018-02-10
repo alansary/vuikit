@@ -1,4 +1,3 @@
-import VkIconLink from '../icon/icon-link'
 import mergeData from 'vuikit/src/util/vue-data-merge'
 
 export default {
@@ -11,16 +10,24 @@ export default {
     icon: {
       type: String,
       required: true
+    },
+    href: {
+      type: String
     }
   },
   render (h, { props, data }) {
-    const { active, icon } = props
+    const { href, active, icon } = props
 
-    return h('li', { class: { 'uk-active': active } }, [
+    return h('li', mergeData(data, {
+      class: { 'uk-active': active }
+    }), [
 
-      h(VkIconLink, mergeData(data, {
-        props: { name: icon }
-      }))
+      h('a', {
+        attrs: { href },
+        class: 'uk-icon'
+      }, [
+        h(`icon-${icon}`, { props })
+      ])
 
     ])
 
