@@ -1,98 +1,32 @@
-<template>
-  <modal-transition
-    @enter="updateOverflowAuto"
-  >
-    <div ref="modal"
-      v-if="show"
-      :style="{
-        display: center
-          ? ''
-          : 'block'
-      }"
-      :class="['uk-modal', {
-        'uk-modal-container': container,
-        'uk-flex uk-flex-top': center
-      }]"
-      @click.self="closeOnBg && $emit('update:show', false)"
-    >
-      <div ref="dialog"
-        :class="['uk-modal-dialog', widthClasses, {
-          'uk-margin-auto-vertical': center
-        }]"
-      >
-        <!-- dialog slot for customizations, for content prefer body slot -->
-        <slot name="dialog"></slot>
-
-        <!-- close button -->
-        <modal-btn-close
-          v-if="closeBtn"
-          :type="closeBtn"
-          class="uk-modal-close-default"
-          @click="$emit('update:show', false)"
-        ></modal-btn-close>
-
-        <!-- header -->
-        <div ref="header"
-          v-if="$slots.header"
-          class="uk-modal-header"
-        >
-          <slot name="header"></slot>
-        </div>
-
-        <!-- body -->
-        <div ref="body"
-          v-if="$slots.default"
-          :class="['uk-modal-body', {
-            'uk-overflow-auto': overflowAuto
-          }]"
-        >
-          <slot></slot>
-        </div>
-
-        <!-- footer -->
-        <div ref="footer"
-          v-if="$slots.footer"
-          class="uk-modal-footer"
-        >
-          <slot name="footer"></slot>
-        </div>
-      </div>
-    </div>
-  </modal-transition>
-</template>
-
 <script>
-import { css } from 'vuikit/src/util/style'
-import { on } from 'vuikit/src/util/dom/event'
-import { height } from 'vuikit/src/util/dimensions'
-import { includes, debounce } from 'vuikit/src/util/lang'
+import {
+  Modal,
+  ModalBody,
+  ModalDialog,
+  ModalHeader,
+  ModalFooter
+} from 'vuikit/src/core/modal'
 
 import core from './core'
-import ModalTransition from './transition'
-import ModalBtnClose from './ui/button-close'
+import Transition from './transition'
+import VkModalOverflowAuto from 'vuikit/src/core/modal/v-overflow-auto'
 
 export default {
   name: 'Modal',
   extends: core,
-  components: {
-    ModalBtnClose,
-    ModalTransition
+  directives: {
+    VkModalOverflowAuto
   },
   props: {
-    // determines if close button should be displayed
-    closeBtn: {
-      type: [Boolean, String],
-      default: false,
-      validator: val => !val || includes([true, 'outside'], val)
+    // determines if the modal should be closed
+    // when the background is clicked
+    closeOnBg: {
+      type: Boolean,
+      default: true
     },
     // determines if the modal should auto
     // adjust the height overflow
     overflowAuto: {
-      type: Boolean,
-      default: false
-    },
-    // expands the modal dialog to the default Container width
-    container: {
       type: Boolean,
       default: false
     },
@@ -101,45 +35,77 @@ export default {
       type: Boolean,
       default: false
     },
-    // allows setting the dialog with using the uk-width-* classes
-    width: {
+    // the modal size, `container` or one of
+    // the uk-width-* classes without the prefix
+    size: {
       type: String,
       default: ''
+    },
+    // when stacked it will not close
+    // any active modal
+    stacked: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     widthClasses () {
-      return this.width
-        ? this.width.split(' ').map(width => `uk-width-${width}`)
+      return this.size
+        ? this.size.split(' ').map(size => `uk-width-${size}`)
         : ''
     }
   },
-  methods: {
-    updateOverflowAuto () {
-      if (!this.overflowAuto) {
-        return
+  render (h) {
+    const def = {
+      class: {
+        'uk-flex uk-flex-top': this.center
+      },
+      style: {
+        display: this.center ? 'flex' : 'block'
+      },
+      props: {
+        expand: this.size === 'container'
+      },
+      directives: [{
+        name: 'show',
+        value: this.show
+      }],
+      on: {
+        click: e => {
+          const bgClicked = event.target === this.$el
+          if (bgClicked && this.closeOnBg) {
+            this.hide()
+          }
+        }
       }
-
-      this.$nextTick(() => {
-        const modal = this.$el
-        const modalBody = this.$refs.body
-        const modalDialog = this.$refs.dialog
-
-        css(modalBody, 'maxHeight', 150)
-        const maxHeight = Math.max(150, 150 + height(modal) - modalDialog.offsetHeight)
-        css(modalBody, 'maxHeight', maxHeight)
-      })
     }
-  },
-  mounted () {
-    // init global events
-    on(window, 'resize', debounce(() => {
-      if (!this.show) {
-        return
-      }
 
-      this.updateOverflowAuto()
-    }, 30), this._uid)
+    const modal = h(Modal, def, [
+      h(ModalDialog, {
+        class: [this.widthClasses, {
+          'uk-margin-auto-vertical': this.center
+        }]
+      }, [
+        // slot meant for customizations
+        // for content use the body slot
+        this.$slots.dialog && this.$slots.dialog,
+
+        // header slot
+        this.$slots.header && h(ModalHeader, this.$slots.header),
+
+        // body
+        h(ModalBody, {
+          directives: this.overflowAuto
+            ? [{ name: 'vk-modal-overflow-auto' }]
+            : []
+        }, this.$slots.default),
+
+        // footer slot
+        this.$slots.footer && h(ModalFooter, this.$slots.footer)
+      ])
+    ])
+
+    return h(Transition, [ modal ])
   }
 }
 </script>

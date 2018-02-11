@@ -1,46 +1,43 @@
-<template>
-  <modal-transition>
-    <div
-      v-if="show"
-      style="display: block"
-      class="uk-modal uk-modal-full"
-    >
-      <div
-        class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle"
-        style="box-sizing: border-box; min-height: 100vh; height: 100vh;"
-      >
-        <modal-btn-close
-          v-if="closeBtn"
-          :type="closeBtn"
-          class="uk-modal-close-full"
-          @click="$emit('update:show', false)"
-        ></modal-btn-close>
-        <slot></slot>
-      </div>
-    </div>
-  </modal-transition>
-</template>
-
 <script>
 import core from './core'
-import { includes } from 'vuikit/src/util/lang'
-import ModalTransition from './transition'
-import ModalBtnClose from './ui/button-close'
+import Transition from './transition'
+import VkHeightViewport from 'vuikit/src/directives/height-viewport'
+import { ModalFull, ModalDialog } from 'vuikit/src/core/modal'
 
 export default {
   name: 'ModalFull',
   extends: core,
-  components: {
-    ModalBtnClose,
-    ModalTransition
+  directives: {
+    VkHeightViewport
   },
   props: {
-    // determines if close button should be displayed
+    // determines close button display
     closeBtn: {
-      type: [Boolean, String],
-      default: true,
-      validator: val => !val || includes([true, 'large'], val)
+      type: Boolean,
+      default: false
     }
+  },
+  render (h) {
+    const def = {
+      props: {
+        expand: 'full'
+      },
+      directives: [{
+        name: 'show',
+        value: this.show
+      }]
+    }
+
+    const modal = h(ModalFull, def, [
+      h(ModalDialog, {
+        class: 'uk-flex uk-flex-center uk-flex-middle',
+        directives: [{
+          name: 'vk-height-viewport'
+        }]
+      }, this.$slots.default)
+    ])
+
+    return h(Transition, [ modal ])
   }
 }
 </script>
