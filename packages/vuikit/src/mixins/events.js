@@ -5,16 +5,16 @@ import { on, off } from 'vuikit/src/util/event'
 export default {
   methods: {
     on (...args) {
-      this._events.push(on(...args))
+      this._vk_events_off.push(on(...args))
     },
     off (...args) {
       off(...args)
     }
   },
   created () {
-    this._events = []
+    this._vk_events_off = []
   },
   beforeDestroy () {
-    this._events.forEach(off => off())
+    this._vk_events_off.forEach(off => off())
   }
 }
