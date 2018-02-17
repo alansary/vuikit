@@ -1,10 +1,9 @@
 /* eslint-disable one-var, no-mixed-operators, no-useless-call, prefer-promise-reject-errors, no-cond-assign, no-return-assign */
-import {doc, docEl, win} from './env'
 import {on} from './event'
 import {clamp, isNumeric, isString, isUndefined, toNode, toNodes, toNumber} from './lang'
 
 export function isReady () {
-  return doc.readyState === 'complete' || doc.readyState !== 'loading' && !docEl.doScroll
+  return document.readyState === 'complete' || document.readyState !== 'loading' && !document.documentElement.doScroll
 }
 
 export function ready (fn) {
@@ -19,8 +18,8 @@ export function ready (fn) {
     unbind2()
     fn()
   }
-  const unbind1 = on(doc, 'DOMContentLoaded', handle)
-  const unbind2 = on(win, 'load', handle)
+  const unbind1 = on(document, 'DOMContentLoaded', handle)
+  const unbind2 = on(window, 'load', handle)
 }
 
 export function index (element, ref) {
@@ -143,10 +142,10 @@ export function fragment (html) {
 
   const matches = singleTagRE.exec(html)
   if (matches) {
-    return doc.createElement(matches[1])
+    return document.createElement(matches[1])
   }
 
-  const container = doc.createElement('div')
+  const container = document.createElement('div')
   if (fragmentRE.test(html)) {
     container.insertAdjacentHTML('beforeend', html.trim())
   } else {
@@ -155,4 +154,18 @@ export function fragment (html) {
 
   return container.childNodes.length > 1 ? toNodes(container.childNodes) : container.firstChild
 
+}
+
+export function apply (node, fn) {
+
+  if (!node || node.nodeType !== 1) {
+    return
+  }
+
+  fn(node)
+  node = node.firstElementChild
+  while (node) {
+    apply(node, fn)
+    node = node.nextElementSibling
+  }
 }

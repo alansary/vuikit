@@ -9,7 +9,7 @@ import { query } from 'vuikit/src/util/selector'
 import { within } from 'vuikit/src/util/filter'
 import { MouseTracker } from 'vuikit/src/util/mouse'
 import { get, assign, includes } from 'vuikit/src/util/lang'
-import { docEl, pointerEnter, pointerLeave } from 'vuikit/src/util/env'
+import { pointerEnter, pointerLeave } from 'vuikit/src/util/env'
 import { findClosestParent, findClosestParents } from 'vuikit/src/util/vue'
 
 let active
@@ -195,7 +195,7 @@ function registerGlobalEvents () {
   }
 
   registered = true
-  on(docEl, 'click', ({ target, defaultPrevented }) => {
+  on(document.documentElement, 'click', ({ target, defaultPrevented }) => {
     if (defaultPrevented || !active) {
       return
     }

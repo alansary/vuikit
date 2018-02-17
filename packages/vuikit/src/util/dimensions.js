@@ -207,7 +207,7 @@ function dimension (prop) {
 
       if (isDocument(element)) {
         const doc = element.documentElement
-        return Math.max(doc.offsetHeight, doc.scrollHeight)
+        return Math.max(doc[`offset${propName}`], doc[`scroll${propName}`])
       }
 
       value = css(element, prop)

@@ -1,5 +1,4 @@
 /* eslint-disable no-return-assign, no-mixed-operators */
-import {win} from './env'
 import {attr} from './attr'
 import {once} from './event'
 import {Promise} from './promise'
@@ -128,7 +127,7 @@ function listen (cb) {
 
   return new Promise(resolve => {
 
-    once(win, 'message', (_, data) => resolve(data), false, ({data}) => {
+    once(window, 'message', (_, data) => resolve(data), false, ({data}) => {
 
       if (!data || !isString(data)) {
         return
