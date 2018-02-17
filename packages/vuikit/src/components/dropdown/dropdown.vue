@@ -2,10 +2,10 @@
 import Drop from '../drop/drop'
 
 export default {
-  name: 'Dropdown',
   extends: Drop,
+  name: 'Dropdown',
   props: {
-    clsDrop: {
+    mainClass: {
       default: 'uk-dropdown'
     }
   }

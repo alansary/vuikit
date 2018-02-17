@@ -1,21 +1,21 @@
 /*
- * Returns the closest parent matching the tag
+ * Returns the closest parent of same type
  */
-export function findClosestParent (instance, tag) {
-  return findClosestParents(instance, tag).pop()
+export function findParent (instance) {
+  return findParents(instance).pop()
 }
 
 /*
- * Returns the closest parents matching the tag
+ * Returns closest parents of same type
  */
-export function findClosestParents (instance, tag) {
+export function findParents (instance) {
   const parents = []
-  tag = tag || instance.$options._componentTag
+  const name = instance.$options.name
 
   let parent = instance.$parent
 
   while (parent) {
-    if (parent.$options._componentTag === tag) {
+    if (parent.$options.name === name) {
       parents.unshift(parent)
     }
 
@@ -23,4 +23,20 @@ export function findClosestParents (instance, tag) {
   }
 
   return parents
+}
+
+/*
+ * Returns all descendant childs of same type
+ */
+export function findChilds (instance) {
+  const name = instance.$options.name
+
+  let childs = instance.$children
+    .filter(child => child.$options.name === name)
+
+  childs.forEach(child => {
+    childs = [...childs, ...findChilds(child)]
+  })
+
+  return childs
 }

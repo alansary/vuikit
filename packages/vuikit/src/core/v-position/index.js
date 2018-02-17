@@ -1,11 +1,10 @@
 import { css } from 'vuikit/src/util/style'
 import { warn } from 'vuikit/src/util/debug'
 import { toggleClass } from 'vuikit/src/util/class'
-import { on, off, offAll } from 'vuikit/src/util/dom/event'
+import { trigger } from 'vuikit/src/util/event'
 import { positionAt, flipPosition } from 'vuikit/src/util/dimensions'
-import { get, debounce, isObject, isUndefined, noop } from 'vuikit/src/util/lang'
-
-let uid = 'v-position'
+import { get, isObject, isUndefined } from 'vuikit/src/util/lang'
+import { positionBefore, positionAfter } from './events'
 
 export default {
   inserted (el, binding, vnode) {
@@ -21,32 +20,29 @@ export default {
     if (ctx) {
       position(ctx)
     }
-  },
-  unbind (el, binding, vnode) {
-    offAll(uid)
   }
 }
 
 function position (ctx) {
   const { el, props, vnode } = ctx
-  const { target, position, offset, boundary, flip, clsPos, beforePosition, afterPosition } = props
+  const { target, position, offset, boundary, flip, mainClass } = props
 
   if (!position.match(/^((top|bottom)-(left|center|right))|((left|right)-(top|center|bottom))$/)) {
-    warn(`'${position}' is not a valid v-position position`, vnode)
+    warn(`v-position -> '${position}' -> no valid position`, vnode)
+    return
   }
 
   if (!target || !target.tagName) {
-    warn(`Provided value is not a valid v-position target`, vnode)
+    warn(`v-position -> no valid target`, vnode)
     return
   }
 
   let [dir, align] = position.split('-')
 
-  // execute callback
-  beforePosition(el)
+  trigger(el, positionBefore)
 
   // remove any position class
-  const classesRx = new RegExp(`${clsPos}-(top|bottom|left|right)(-[a-z]+)?`)
+  const classesRx = new RegExp(`${mainClass}-(top|bottom|left|right)(-[a-z]+)?`)
   el.className = el.className.replace(classesRx, '')
 
   // reset pos
@@ -81,14 +77,10 @@ function position (ctx) {
   dir = axis === 'x' ? x : y
   align = axis === 'x' ? y : x
 
-  // add on resize events
-  setResizeEvent(ctx)
-
   // add position class
-  toggleClass(el, `${clsPos}-${dir}-${align}`, offset === false)
+  toggleClass(el, `${mainClass}-${dir}-${align}`, offset === false)
 
-  // execute callback
-  afterPosition(el)
+  trigger(el, positionAfter)
 }
 
 /**
@@ -109,19 +101,10 @@ function getProps (ctx) {
     boundary: get(value, 'boundary', window),
     flip: get(value, 'flip', true),
     offset: get(value, 'offset', false),
-    clsPos: get(value, 'clsPos'),
-    beforePosition: get(value, 'beforePosition', noop),
-    afterPosition: get(value, 'afterPosition', noop)
+    mainClass: get(value, 'mainClass')
   }
 
   return props
-}
-
-function setResizeEvent (ctx) {
-  off(window, 'resize', uid)
-  on(window, 'resize', debounce(() => {
-    position(ctx)
-  }, 50), uid)
 }
 
 /**

@@ -1,21 +1,21 @@
 <template>
-  <div class="uk-padding">
+  <div class="uk-padding" v-vk-margin>
 
     <!-- Hover with childs -->
     <div class="uk-inline">
       <vk-button>Hover</vk-button>
-      <vk-drop id="parent-drop">
-        <vk-card id="parent-drop-card">
+      <vk-drop>
+        <vk-card>
           <lorem-ipsum />
 
           <vk-button type="primary" class="uk-width-1-1">Hover</vk-button>
-          <vk-drop id="child-drop" position="right-center" :offset="50">
-            <vk-card id="child-drop-card">
+          <vk-drop position="right-center" :offset="50">
+            <vk-card>
               <lorem-ipsum />
 
               <vk-button type="primary" class="uk-width-1-1">Hover</vk-button>
-              <vk-drop id="child-child-drop" position="right-center" :offset="50">
-                <vk-card id="child-child-drop-card">
+              <vk-drop position="right-center" :offset="50">
+                <vk-card>
                   <lorem-ipsum />
                 </vk-card>
               </vk-drop>
@@ -29,18 +29,18 @@
     <!-- Click with childs -->
     <div class="uk-inline">
       <vk-button>Click</vk-button>
-      <vk-drop id="parent-drop" mode="click">
-        <vk-card id="parent-drop-card">
+      <vk-drop mode="click">
+        <vk-card>
           <lorem-ipsum />
 
           <vk-button type="primary" class="uk-width-1-1">Click</vk-button>
-          <vk-drop id="child-drop" position="right-center" :offset="50" mode="click">
-            <vk-card id="child-drop-card">
+          <vk-drop position="right-center" :offset="50" mode="click">
+            <vk-card>
               <lorem-ipsum />
 
               <vk-button type="primary" class="uk-width-1-1">Click</vk-button>
-              <vk-drop id="child-child-drop" position="right-center" :offset="50" mode="click">
-                <vk-card id="child-child-drop-card">
+              <vk-drop position="right-center" :offset="50" mode="click">
+                <vk-card>
                   <lorem-ipsum />
                 </vk-card>
               </vk-drop>
@@ -59,15 +59,6 @@
         </vk-card>
       </vk-drop>
     </div>
-
-    <div class="uk-inline">
-      <vk-button ref="target">Target</vk-button>
-    </div>
-    <vk-drop target="target">
-      <vk-card>
-        <lorem-ipsum />
-      </vk-card>
-    </vk-drop>
 
   </div>
 </template>
