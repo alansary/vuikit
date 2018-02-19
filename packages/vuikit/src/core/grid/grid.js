@@ -4,6 +4,10 @@ import { toggleClass } from 'vuikit/src/util/class'
 export default {
   functional: true,
   props: {
+    tag: {
+      type: String,
+      default: 'div'
+    },
     margin: {
       type: String,
       default: 'uk-grid-margin'
@@ -30,9 +34,9 @@ export default {
     }
   },
   render (h, { props, data, children }) {
-    const { gutter, divided, matched, margin, firstColumn, clsStack } = props
+    const { tag, gutter, divided, matched, margin, firstColumn, clsStack } = props
 
-    return h('div', mergeData(data, {
+    return h(tag, mergeData(data, {
       class: ['uk-grid', {
         'uk-grid-match': matched,
         'uk-grid-divider': divided,
