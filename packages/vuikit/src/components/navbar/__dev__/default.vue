@@ -7,15 +7,23 @@
       <vk-grid>
         <div class="uk-width-2-3@m">
 
-          <navbar container class="uk-margin">
-            <navbar-nav slot="left">
-              <navbar-nav-item title="Active" active href="#" />
-              <navbar-nav-item title="Parent (TODO)" href="#" />
-              <navbar-nav-item title="Content (TODO)" href="#" />
-              <navbar-nav-item title="Item" href="#" />
-              <navbar-nav-item title="Item" href="#" />
-            </navbar-nav>
-          </navbar>
+          <vk-navbar container class="uk-margin">
+            <vk-navbar-nav slot="left">
+              <vk-navbar-nav-item title="Active" active href="#" />
+              <vk-navbar-dropdown title="Parent">
+                <vk-navbar-dropdown-nav>
+                  <vk-nav-item title="Active" active></vk-nav-item>
+                  <vk-nav-item title="Item"></vk-nav-item>
+                  <vk-nav-item title="Item"></vk-nav-item>
+                </vk-navbar-dropdown-nav>
+              </vk-navbar-dropdown>
+              <vk-navbar-dropdown title="Content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </vk-navbar-dropdown>
+              <vk-navbar-nav-item title="Item" href="#" />
+              <vk-navbar-nav-item title="Item" href="#" />
+            </vk-navbar-nav>
+          </vk-navbar>
 
           <h2>Transparent</h2>
 
@@ -23,18 +31,24 @@
             <canvas class="uk-background-cover" style="background-image: url('/dark.jpg')" width="1000" height="200"></canvas>
             <div class="uk-position-top">
 
-              <navbar container transparent>
-                <navbar-nav slot="left">
-                  <navbar-nav-item title="Active" active href="#" />
-                  <navbar-nav-item title="Parent (TODO)" href="#" />
-                  <navbar-nav-item title="Item" href="#" />
-                  <navbar-nav-item title="Item" href="#" />
-                </navbar-nav>
-                <navbar-item slot="right">
+              <vk-navbar container transparent>
+                <vk-navbar-nav slot="left">
+                  <vk-navbar-nav-item title="Active" active href="#" />
+                  <vk-navbar-dropdown title="Parent">
+                    <vk-navbar-dropdown-nav>
+                      <vk-nav-item title="Active" active></vk-nav-item>
+                      <vk-nav-item title="Item"></vk-nav-item>
+                      <vk-nav-item title="Item"></vk-nav-item>
+                    </vk-navbar-dropdown-nav>
+                  </vk-navbar-dropdown>
+                  <vk-navbar-nav-item title="Item" href="#" />
+                  <vk-navbar-nav-item title="Item" href="#" />
+                </vk-navbar-nav>
+                <vk-navbar-item slot="right">
                   <div>Some <a href="#">Link</a></div>
-                </navbar-item>
-                <navbar-toggle slot="right" href="#"></navbar-toggle>
-              </navbar>
+                </vk-navbar-item>
+                <vk-navbar-toggle slot="right" href="#"></vk-navbar-toggle>
+              </vk-navbar>
 
             </div>
           </div>
@@ -43,18 +57,24 @@
             <canvas class="uk-background-cover" style="background-image: url('/light.jpg')" width="1000" height="200"></canvas>
             <div class="uk-position-top">
 
-              <navbar container transparent>
-                <navbar-nav slot="left">
-                  <navbar-nav-item title="Active" active href="#" />
-                  <navbar-nav-item title="Parent (TODO)" href="#" />
-                  <navbar-nav-item title="Item" href="#" />
-                  <navbar-nav-item title="Item" href="#" />
-                </navbar-nav>
-                <navbar-item slot="right">
+              <vk-navbar container transparent>
+                <vk-navbar-nav slot="left">
+                  <vk-navbar-nav-item title="Active" active href="#" />
+                  <vk-navbar-dropdown title="Parent">
+                    <vk-navbar-dropdown-nav>
+                      <vk-nav-item title="Active" active></vk-nav-item>
+                      <vk-nav-item title="Item"></vk-nav-item>
+                      <vk-nav-item title="Item"></vk-nav-item>
+                    </vk-navbar-dropdown-nav>
+                  </vk-navbar-dropdown>
+                  <vk-navbar-nav-item title="Item" href="#" />
+                  <vk-navbar-nav-item title="Item" href="#" />
+                </vk-navbar-nav>
+                <vk-navbar-item slot="right">
                   <div>Some <a href="#">Link</a></div>
-                </navbar-item>
-                <navbar-toggle slot="right" href="#"></navbar-toggle>
-              </navbar>
+                </vk-navbar-item>
+                <vk-navbar-toggle slot="right" href="#"></vk-navbar-toggle>
+              </vk-navbar>
 
             </div>
           </div>
@@ -65,153 +85,172 @@
 
       <h2>Icons and Subtitles</h2>
 
-      <navbar container class="uk-margin">
-        <navbar-nav slot="left">
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" icon="trash" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" subtitle="Subtitle" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" subtitle="Subtitle" icon="trash" href="#"></navbar-nav-item>
-          <navbar-nav-item icon="trash" href="#"></navbar-nav-item>
-        </navbar-nav>
-      </navbar>
+      <vk-navbar container class="uk-margin">
+        <vk-navbar-nav slot="left">
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" icon="trash" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" subtitle="Subtitle" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" subtitle="Subtitle" icon="trash" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item icon="trash" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+      </vk-navbar>
 
       <h2>Content Items</h2>
 
-      <navbar container class="uk-margin">
-        <navbar-nav slot="left">
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
-        <navbar-item slot="left">
+      <vk-navbar container class="uk-margin">
+        <vk-navbar-nav slot="left">
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+        <vk-navbar-item slot="left">
           <div>Some <a href="#">Link</a></div>
-        </navbar-item>
-        <navbar-item slot="left">
+        </vk-navbar-item>
+        <vk-navbar-item slot="left">
           <vk-icon-button href="#" icon="trash"></vk-icon-button>
-        </navbar-item>
-        <navbar-item slot="left">
+        </vk-navbar-item>
+        <vk-navbar-item slot="left">
           <img class="uk-logo uk-responsive-height" src="/photo.jpg" alt="">
-        </navbar-item>
-        <navbar-item slot="left">Search</navbar-item>
-        <navbar-item slot="left">
+        </vk-navbar-item>
+        <vk-navbar-item slot="left">Search</vk-navbar-item>
+        <vk-navbar-item slot="left">
           <form>
             <input class="uk-input uk-form-width-medium" type="text" placeholder="Input">
             <button class="uk-button uk-button-default">Button</button>
           </form>
-        </navbar-item>
-      </navbar>
+        </vk-navbar-item>
+      </vk-navbar>
 
       <h2>Toggle and Logo</h2>
 
       <vk-grid class="uk-child-width-1-2@m">
         <div>
 
-          <navbar container class="uk-margin">
-            <navbar-toggle slot="left" href="#"></navbar-toggle>
-            <navbar-item-logo slot="right" href="#">Logo</navbar-item-logo>
-          </navbar>
+          <vk-navbar container class="uk-margin">
+            <vk-navbar-toggle slot="left" href="#"></vk-navbar-toggle>
+            <vk-navbar-item-logo slot="right" href="#">Logo</vk-navbar-item-logo>
+          </vk-navbar>
 
-          <navbar container class="uk-margin">
-            <navbar-toggle title="Menu" slot="left" href="#"></navbar-toggle>
-            <navbar-toggle title="Menu" :icon="false" slot="right" href="#"></navbar-toggle>
-          </navbar>
-
-        </div>
-        <div>
-
-          With dropdown (TODO)
+          <vk-navbar container class="uk-margin">
+            <vk-navbar-toggle title="Menu" slot="left" href="#"></vk-navbar-toggle>
+            <vk-navbar-toggle title="Menu" :icon="false" slot="right" href="#"></vk-navbar-toggle>
+          </vk-navbar>
 
         </div>
       </vk-grid>
 
       <h2>Center</h2>
 
-      <navbar container class="uk-margin">
-        <navbar-nav slot="left">
-          <navbar-nav-item title="Left" href="#"></navbar-nav-item>
-        </navbar-nav>
+      <vk-navbar container class="uk-margin">
+        <vk-navbar-nav slot="left">
+          <vk-navbar-nav-item title="Left" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
 
         <template slot="center">
-          <navbar-nav>
-            <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-            <navbar-nav-item title="Parent (TODO)" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Content (TODO)" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          </navbar-nav>
-          <navbar-item>
+          <vk-navbar-nav>
+            <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+            <vk-navbar-dropdown title="Parent">
+              <vk-navbar-dropdown-nav>
+                <vk-nav-item title="Active" active></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+              </vk-navbar-dropdown-nav>
+            </vk-navbar-dropdown>
+            <vk-navbar-nav-item title="Content (TODO)" href="#"></vk-navbar-nav-item>
+            <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+            <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+            <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          </vk-navbar-nav>
+          <vk-navbar-item>
             <div>Some <a href="#">Link</a></div>
-          </navbar-item>
+          </vk-navbar-item>
         </template>
 
-        <navbar-nav slot="right">
-          <navbar-nav-item title="Right" href="#"></navbar-nav-item>
-        </navbar-nav>
-      </navbar>
+        <vk-navbar-nav slot="right">
+          <vk-navbar-nav-item title="Right" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+      </vk-navbar>
 
-      <navbar container class="uk-margin">
-        <navbar-nav slot="left">
-          <navbar-nav-item title="Left" href="#"></navbar-nav-item>
-        </navbar-nav>
+      <vk-navbar container class="uk-margin">
+        <vk-navbar-nav slot="left">
+          <vk-navbar-nav-item title="Left" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
 
         <template slot="center-left">
-          <navbar-nav>
-            <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-            <navbar-nav-item title="Parent (TODO)" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Content (TODO)" href="#"></navbar-nav-item>
-          </navbar-nav>
+          <vk-navbar-nav>
+            <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+            <vk-navbar-dropdown title="Parent">
+              <vk-navbar-dropdown-nav>
+                <vk-nav-item title="Active" active></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+              </vk-navbar-dropdown-nav>
+            </vk-navbar-dropdown>
+            <vk-navbar-nav-item title="Content (TODO)" href="#"></vk-navbar-nav-item>
+          </vk-navbar-nav>
         </template>
 
-        <navbar-item-logo slot="center" href="#">Logo</navbar-item-logo>
+        <vk-navbar-item-logo slot="center" href="#">Logo</vk-navbar-item-logo>
 
         <template slot="center-right">
-          <navbar-nav>
-            <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-            <navbar-nav-item title="Parent (TODO)" href="#"></navbar-nav-item>
-            <navbar-nav-item title="Content (TODO)" href="#"></navbar-nav-item>
-          </navbar-nav>
-          <navbar-item>
+          <vk-navbar-nav>
+            <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+            <vk-navbar-dropdown title="Parent">
+              <vk-navbar-dropdown-nav>
+                <vk-nav-item title="Active" active></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+                <vk-nav-item title="Item"></vk-nav-item>
+              </vk-navbar-dropdown-nav>
+            </vk-navbar-dropdown>
+            <vk-navbar-nav-item title="Content (TODO)" href="#"></vk-navbar-nav-item>
+          </vk-navbar-nav>
+          <vk-navbar-item>
             <div>Some <a href="#">Link</a></div>
-          </navbar-item>
+          </vk-navbar-item>
         </template>
 
-        <navbar-nav slot="right">
-          <navbar-nav-item title="Right" href="#"></navbar-nav-item>
-        </navbar-nav>
-      </navbar>
+        <vk-navbar-nav slot="right">
+          <vk-navbar-nav-item title="Right" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+      </vk-navbar>
 
       <h2>Layouts</h2>
     </div>
 
-    <navbar-full class="uk-margin">
+    <vk-navbar-full class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-dropdown title="Parent">
+            <vk-navbar-dropdown-nav>
+              <vk-nav-item title="Active" active></vk-nav-item>
+              <vk-nav-item title="Item"></vk-nav-item>
+              <vk-nav-item title="Item"></vk-nav-item>
+            </vk-navbar-dropdown-nav>
+          </vk-navbar-dropdown>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
-    <navbar-full class="uk-margin">
+    <vk-navbar-full class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
 
       <template slot="right">
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
-        <navbar-item>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+        <vk-navbar-item>
           <vk-grid tag="ul" gutter="small">
             <li>
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
@@ -223,26 +262,26 @@
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
             </li>
           </vk-grid>
-        </navbar-item>
+        </vk-navbar-item>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
-    <navbar-full class="uk-margin">
+    <vk-navbar-full class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
       </template>
 
       <template slot="center">
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
 
       <template slot="right">
-        <navbar-item>
+        <vk-navbar-item>
           <vk-grid tag="ul" gutter="small">
             <li>
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
@@ -254,41 +293,41 @@
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
             </li>
           </vk-grid>
-        </navbar-item>
+        </vk-navbar-item>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
     <!-- expanded -->
-    <navbar-full expanded class="uk-margin">
+    <vk-navbar-full expanded class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
-    <navbar-full expanded class="uk-margin">
+    <vk-navbar-full expanded class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
 
       <template slot="right">
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
-        <navbar-item>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
+        <vk-navbar-item>
           <vk-grid tag="ul" gutter="small">
             <li>
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
@@ -300,26 +339,26 @@
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
             </li>
           </vk-grid>
-        </navbar-item>
+        </vk-navbar-item>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
-    <navbar-full expanded class="uk-margin">
+    <vk-navbar-full expanded class="uk-margin">
       <template slot="left">
-        <navbar-item-logo href="#">Logo</navbar-item-logo>
+        <vk-navbar-item-logo href="#">Logo</vk-navbar-item-logo>
       </template>
 
       <template slot="center">
-        <navbar-nav>
-          <navbar-nav-item title="Active" active href="#"></navbar-nav-item>
-          <navbar-nav-item title="Parent" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-          <navbar-nav-item title="Item" href="#"></navbar-nav-item>
-        </navbar-nav>
+        <vk-navbar-nav>
+          <vk-navbar-nav-item title="Active" active href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Parent" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+          <vk-navbar-nav-item title="Item" href="#"></vk-navbar-nav-item>
+        </vk-navbar-nav>
       </template>
 
       <template slot="right">
-        <navbar-item>
+        <vk-navbar-item>
           <vk-grid tag="ul" gutter="small">
             <li>
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
@@ -331,17 +370,9 @@
               <vk-icon-button href="#" icon="trash"></vk-icon-button>
             </li>
           </vk-grid>
-        </navbar-item>
+        </vk-navbar-item>
       </template>
-    </navbar-full>
+    </vk-navbar-full>
 
   </div>
 </template>
-
-<script>
-import * as components from '../'
-
-export default {
-  components
-}
-</script>

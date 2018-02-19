@@ -1,8 +1,8 @@
 import VkDrop from '../drop/drop'
 import { Grid as VkGrid } from '../'
 
-import { get } from 'vuikit/src/util/lang'
 import { query } from 'vuikit/src/util/selector'
+import { get, assign } from 'vuikit/src/util/lang'
 import { isRtl, pointerEnter, pointerLeave, pointerDown } from 'vuikit/src/util/env'
 
 export default {
@@ -11,6 +11,9 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    subtitle: {
+      type: String
     },
     justified: {
       type: Boolean,
@@ -60,12 +63,15 @@ export default {
         on(target, pointerLeave, hide)
       }
     }
-
   },
   render (h) {
-    const { title, justified, mode, align, navbarAligned } = this
+    const { title, justified, mode, align, navbarAligned, subtitle } = this
     const childrenNodes = this.$slots.default.filter(n => n.tag)
     const colCount = childrenNodes.length
+
+    const Subtitle = subtitle && h('div', [ title, h('div', {
+      class: 'uk-navbar-subtitle'
+    }, subtitle) ])
 
     const grid = () => h(VkGrid, {
       class: [
@@ -77,7 +83,7 @@ export default {
     ))
 
     return h('li', [
-      h('a', title),
+      h('a', [Subtitle || title]),
       h(VkDrop, {
         nativeOn: {
           [pointerEnter]: e => {
@@ -97,27 +103,24 @@ export default {
         class: {
           'uk-navbar-dropdown-dropbar': this.dropbar,
           'uk-navbar-dropdown-boundary': justified || navbarAligned,
-          [`uk-navbar-dropdown-width-${colCount}`]: !justified
+          [`uk-navbar-dropdown-width-${colCount}`]: colCount > 1 && !justified
         },
-        props: {
+        props: assign({}, this.$props, {
           // mode is nulled for full
           // show/hide controll
           mode: '',
-          offset: 0,
           position: justified
             ? 'bottom-justify'
             : `bottom-${align}`,
           mainClass: 'uk-navbar-dropdown',
           flip: justified ? 'x' : undefined,
-          boundary: justified || navbarAligned
-            ? '!nav' // closest nav
-            : undefined,
+          boundary: '!nav', // closest nav
           boundaryAlign: justified || navbarAligned
-        }
+        })
       }, [
         colCount >= 2
           ? grid()
-          : childrenNodes
+          : this.$slots.default
       ])
     ])
   }
