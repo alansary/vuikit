@@ -1,5 +1,4 @@
-import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components', module)
-  .add('Offcanvas Default', () => Default)
+storiesOf('Components/Offcanvas', module)
+  .add('Default', () => require('./default').default)

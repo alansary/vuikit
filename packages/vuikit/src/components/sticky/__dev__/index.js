@@ -1,5 +1,4 @@
-import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components', module)
-  .add('Sticky', () => Default)
+storiesOf('Components/Sticky', module)
+  .add('Default', () => require('./default').default)

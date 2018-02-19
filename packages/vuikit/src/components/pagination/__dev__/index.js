@@ -1,4 +1,4 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Modal', module)
+storiesOf('Components/Pagination', module)
   .add('Default', () => require('./default').default)

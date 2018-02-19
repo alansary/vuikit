@@ -25,9 +25,10 @@
 
 <script>
 import core from './core'
-import Tab from 'vuikit/src/core/tab/tab-vertical'
-import TabItem from 'vuikit/src/core/tab/tab-item'
 import { assign } from 'vuikit/src/util/lang'
+
+import Tab from './elements/tab-vertical'
+import TabItem from './elements/tab-item'
 
 export default {
   name: 'TabVertical',

@@ -24,8 +24,8 @@
 
     Modifiers supported
 
-    <vk-subnav pilled v-model="active">
-      <vk-subnav-item title="Active" active />
+    <vk-subnav pilled divided v-model="active">
+      <vk-subnav-item title="Active" />
       <vk-subnav-item title="Item" />
       <vk-subnav-item title="Item" />
       <vk-subnav-item title="Disabled" disabled />

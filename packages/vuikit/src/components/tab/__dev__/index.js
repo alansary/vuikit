@@ -1,6 +1,5 @@
-import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components', module)
-  .add('Tab', () => Default)
-  .add('Tab Vertical', () => require('./vertical.vue').default)
+storiesOf('Components/Tab', module)
+  .add('Default', () => require('./default').default)
+  .add('Vertical', () => require('./vertical').default)

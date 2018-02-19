@@ -1,5 +1,4 @@
-import Default from './default.vue'
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components', module)
-  .add('Subnav', () => Default)
+storiesOf('Components/Subnav', module)
+  .add('Default', () => require('./default').default)

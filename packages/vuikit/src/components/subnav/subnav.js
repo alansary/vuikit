@@ -1,7 +1,8 @@
 import { get } from 'vuikit/src/util/lang'
 import { warn } from 'vuikit/src/util/debug'
-import { Subnav } from 'vuikit/src/core/subnav'
 import mergeData from 'vuikit/src/util/vue-data-merge'
+
+import Subnav from './elements/subnav'
 
 export default {
   functional: true,

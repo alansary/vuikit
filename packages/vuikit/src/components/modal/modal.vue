@@ -1,15 +1,13 @@
 <script>
-import {
-  Modal,
-  ModalBody,
-  ModalDialog,
-  ModalHeader,
-  ModalFooter
-} from 'vuikit/src/core/modal'
-
 import core from './core'
 import Transition from './transition'
-import VkModalOverflowAuto from 'vuikit/src/core/modal/v-overflow-auto'
+import VkModalOverflowAuto from './directives/v-overflow-auto'
+
+import Modal from './elements/modal'
+import ModalBody from './elements/modal-body'
+import ModalDialog from './elements/modal-dialog'
+import ModalHeader from './elements/modal-header'
+import ModalFooter from './elements/modal-footer'
 
 export default {
   name: 'Modal',

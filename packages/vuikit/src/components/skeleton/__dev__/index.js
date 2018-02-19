@@ -1,4 +1,4 @@
 import { storiesOf } from '@storybook/vue'
 
-storiesOf('Components/Modal', module)
+storiesOf('Components/Skeleton', module)
   .add('Default', () => require('./default').default)

@@ -26,9 +26,10 @@
 
 <script>
 import core from './core'
-import Tab from 'vuikit/src/core/tab/tab'
-import TabItem from 'vuikit/src/core/tab/tab-item'
 import { assign } from 'vuikit/src/util/lang'
+
+import Tab from './elements/tab'
+import TabItem from './elements/tab-item'
 
 export default {
   name: 'Tab',

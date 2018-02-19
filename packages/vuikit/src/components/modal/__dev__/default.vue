@@ -10,6 +10,7 @@
             <vk-button @click="show = true">Default</vk-button>
             <vk-button @click="outside = true">Outside</vk-button>
             <vk-button @click="sections = true">Sections</vk-button>
+            <vk-button @click="scrollbar = true">Scrollbar</vk-button>
             <vk-button @click="overflowAuto = true">Overflow Auto</vk-button>
             <vk-button @click="container = true">Size Container</vk-button>
             <vk-button @click="width = true">Size Width</vk-button>
@@ -64,6 +65,11 @@
           <vk-button @click="sections = false">Cancel</vk-button>
           <vk-button type="primary">Save</vk-button>
         </div>
+      </vk-modal>
+
+      <vk-modal :show.sync="scrollbar">
+        <vk-modal-close @click="scrollbar = false"></vk-modal-close>
+        <p v-for="n in 10">{{ lorem }}</p>
       </vk-modal>
 
       <vk-modal :show.sync="overflowAuto" overflow-auto>
@@ -170,6 +176,7 @@ export default {
     outside: false,
     width: false,
     sections: false,
+    scrollbar: false,
     overflowAuto: false,
     container: false,
     center: false,

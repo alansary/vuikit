@@ -1,8 +1,10 @@
 <script>
 import core from './core'
 import Transition from './transition'
+import ModalFull from './elements/modal-full'
+import ModalDialog from './elements/modal-dialog'
+
 import VkHeightViewport from 'vuikit/src/directives/height-viewport'
-import { ModalFull, ModalDialog } from 'vuikit/src/core/modal'
 
 export default {
   name: 'ModalFull',
