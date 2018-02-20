@@ -1,128 +1,108 @@
 <template>
-  <div :class="[
-    'uk-notification',
-    `uk-notification-${this.position}`
-  ]">
-    <notification-message
-      v-for="n in normalizedNfcs"
-      :key="n.key || n.message"
-      :status="n.status"
-      :timeout="n.timeout"
-      @click="remove(n)"
-      @mouseenter="cancelTimeout(n)"
-      @mouseleave="initTimeout(n)"
-    >
-      <slot :message="n.message">
-        {{ n.message }}
-      </slot>
-    </notification-message>
-  </div>
+  <container :position="position">
+    <message-transition>
+      <message
+        v-for="(msg, index) in $messages"
+        :key="getMessageId(msg)"
+        :status="msg.status"
+        v-message-directive="msg"
+        @close="() => triggerRemove(index)"
+      >
+        <slot :message="msg.message">
+          {{ msg.message }}
+        </slot>
+        <message-close></message-close>
+      </message>
+    </message-transition>
+  </container>
 </template>
 
 <script>
-import NotificationMessage from './message'
-import { warn } from 'vuikit/src/util/debug'
-import { isObject, isInteger, isUndefined } from 'vuikit/src/util/lang'
+import Message from './elements/message'
+import Container from './elements/container'
+import MessageClose from './elements/close'
+import MessageDirective from './directive'
+import MessageTransition from './transition'
 
-const timeouts = {}
-const defaultTimeout = 4500
-
-const positions = [
-  'bottom-left',
-  'bottom-center',
-  'bottom-right',
-
-  'top-left',
-  'top-center',
-  'top-right'
-]
+import { warn, tip } from 'vuikit/src/util/debug'
+import { isObject, isString, assign } from 'vuikit/src/util/lang'
 
 export default {
   name: 'Notification',
   components: {
-    NotificationMessage
+    Container,
+    Message,
+    MessageClose,
+    MessageTransition
+  },
+  directives: {
+    MessageDirective
   },
   props: {
-    notifications: {
-      type: Array,
-      default: () => []
+    timeout: {
+      type: Number,
+      default: 5000
     },
-    position: {
-      type: String,
-      default: 'top-center',
-      validator: pos => positions.indexOf(pos) !== -1
-    }
-  },
-  computed: {
-    normalizedNfcs () {
-      return this.notifications.map(n => {
-        if (!isObject(n)) {
-          warn('The Notification value must be an Object')
-          return
+    messages: {
+      type: Array,
+      default: () => [],
+      validator: val => {
+        if (!val.every(m => isObject(m) || isString(m))) {
+          warn('vk-notification -> each message is expected as Object or String')
+          return false
         }
 
-        this.initTimeout(n)
-
-        return n
+        return true
+      }
+    },
+    status: Message.props.status,
+    position: Container.props.position
+  },
+  computed: {
+    $messages () {
+      let messages = this.messages.map(val => {
+        let msg = isString(val) ? { message: val } : val
+        return assign({ status: this.status, timeout: this.timeout }, msg)
       })
+
+      messages = this.removeDuplicates(messages)
+
+      return messages
     }
   },
   methods: {
-    remove (n) {
-      const index = this.notifications.indexOf(n)
+    triggerRemove (index) {
+      const messages = [...this.$messages]
+      messages.splice(index, 1)
 
-      if (index !== -1) {
-        const notifications = [...this.notifications]
-        notifications.splice(index, 1)
-
-        this.$emit('update:notifications', notifications)
-      }
+      this.$emit('update:messages', messages)
     },
-    initTimeout (n) {
-      const timeout = n.timeout || defaultTimeout
+    removeDuplicates (values) {
+      const messages = []
 
-      if (!isInteger(timeout)) {
-        warn('Notification timeout is invalid')
+      const isDuplicated = msg => messages.find(m => {
+        return this.getMessageId(m) === this.getMessageId(msg)
+      })
+
+      for (let i = 0; i < values.length; i++) {
+        if (isDuplicated(values[i])) {
+          tip('vk-notification -> duplicate messages are filtered out, consider adding a unique `key` to those.')
+          continue
+        }
+
+        messages.push(values[i])
       }
 
-      const id = getId(n)
-      const timeoutIsSet = !isUndefined(timeouts[id])
-      const timeoutShouldBeSet = timeout > 0
-
-      if (timeoutShouldBeSet && !timeoutIsSet) {
-        const timeoutId = setTimeout(() => {
-          this.remove(n)
-          delete timeouts[id]
-        }, timeout)
-
-        timeouts[id] = timeoutId
-      }
+      return messages
     },
-    cancelTimeout (n) {
-      const id = getId(n)
-      const timeoutIsSet = !isUndefined(timeouts[id])
+    getMessageId (msg) {
+      const validKeys = ['message', 'status', 'key', 'timeout']
 
-      if (timeoutIsSet) {
-        clearTimeout(timeouts[id])
-        delete timeouts[id]
-      }
-    }
-  },
-  mounted () {
-    document.body.appendChild(this.$el)
-  },
-  beforeDestroy () {
-    if (this.$el.parentNode) {
-      document.body.removeChild(this.$el)
+      return Object.keys(msg)
+        .filter(k => validKeys.find(k => k))
+        .map(k => msg[k])
+        .join(':')
     }
   }
-}
-
-function getId (n) {
-  const msg = n.message.replace(/ /g, '')
-  const key = n.key || 'key'
-  const timeout = n.timeout || 0
-
-  return `${msg}-${key}-${timeout}`
 }
 </script>

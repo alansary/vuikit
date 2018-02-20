@@ -3,10 +3,6 @@ import mergeData from 'vuikit/src/util/vue-data-merge'
 export default {
   functional: true,
   props: {
-    transition: {
-      type: String,
-      default: ''
-    },
     status: {
       type: String,
       default: '',
@@ -16,12 +12,10 @@ export default {
   render (h, { props, data, children }) {
     const { status } = props
 
-    const def = {
+    return h('div', mergeData(data, {
       class: ['uk-notification-message', {
         [`uk-notification-message-${status}`]: status
       }]
-    }
-
-    return h('div', mergeData(data, def), children)
+    }), children)
   }
 }
