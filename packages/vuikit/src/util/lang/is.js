@@ -81,3 +81,7 @@ export function isEmpty (val) {
 function toString (val) {
   return Object.prototype.toString.call(val)
 }
+
+// aliases
+export { isDefined as isDef }
+export { isUndefined as isUndef }
